@@ -1,49 +1,36 @@
 import turtle
 
-# Create turtle
-t = turtle.Turtle()
+# VARIABLES
+axis_x: float = 500.0
 
-# Get values
-speed: int = input("speed:")
-steps: float = input("step_size:")
-square: int = input("square:")
-max_x: float = input("max_x:")
-dot_size: int = input("dot_size:")
+# FUNCTIONS
 
-min_x: float = max_x * -1
-
-# Make cross
-t.speed(10000)
+# Create a cross for coordinates
+def cross(max_x: float, max_y: float):
+    # Create the "Cross Turtle" and set it up
+    ct = turtle.Turtle()
+    ct.speed(10000)
     
-t.setpos(min_x * 1.5, 0)
-t.setpos(max_x * 1.5, 0)
-t.penup()
+    # Draw x-Axis
+    min_x = max_x * -1
 
-t.setpos(0, min_x * 2)
-t.pendown()
-t.setpos(0, max_x * 2)
+    ct.setpos(min_x * 1.5, 0)
+    ct.setpos(max_x * 1.5, 0)
+    ct.penup()
 
+    # Draw y-Axis
+    min_y = max_y * -1
+    ct.setpos(0, min_y * 1.5)
+    ct.pendown()
+    ct.setpos(0, max_y * 1.5)
 
-# Setup turtle
-    
-t.speed(speed)
-t.penup()
-t.setpos(min_x, 0)
+    # Delete turtle
+    ct.hideturtle()
 
-# While loop
-while t.xcor() < max_x:
-    t.forward(steps)
+# PROCESS
 
-    y = pow(t.xcor(), square) / 100
-    if y > max_x:
-        continue
-    
-    t.setpos(t.xcor(), y)
-    
-    print(pow(t.xcor(), square))
-    
-    t.pendown()
-    t.dot(dot_size)
-    t.penup()
+# Create cross
+cross(axis_x, axis_x)
 
+# EXIT
 input()
